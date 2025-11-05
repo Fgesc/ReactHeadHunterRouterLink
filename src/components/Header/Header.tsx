@@ -37,7 +37,7 @@ export const Header = () => {
             }}
         >
             <Group justify="space-between" align="center" maw={828}>
-                <NavLink to="/vacancies/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleClick}>
+                <NavLink to="/vacancies" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleClick}>
                     <Group align="center" gap="xs">
                         <img src={HHIcon} alt="HH" data-testid="logo-hh"/>
                         <Text fw={600} data-testid="header-title">.FrontEnd</Text>
@@ -45,7 +45,7 @@ export const Header = () => {
                 </NavLink>
 
                 <Group gap={24}>
-                    <NavLink to="/vacancies/" style={({ isActive }) => ({color: isActive ? theme.other.colors.black1 : theme.other.colors.gray, textDecoration: "none"})} onClick={handleClick}>
+                    <NavLink to="/vacancies" style={({ isActive }) => ({color: isActive ? theme.other.colors.black1 : theme.other.colors.gray, textDecoration: "none"})} onClick={handleClick}>
                         {({ isActive }) => (
                             <Group align="center" gap={8}>
                                 <Text
