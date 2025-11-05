@@ -14,6 +14,17 @@ export const Header = () => {
         if (isCurrent) e.preventDefault();
     };
 
+    const Marker = () => (
+        <Box
+            style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                backgroundColor: "#4263EB",
+            }}
+        />
+    );
+
     return (
         <Box    
             component="header"
@@ -26,7 +37,7 @@ export const Header = () => {
             }}
         >
             <Group justify="space-between" align="center" maw={828}>
-                <NavLink to="/vacancies/moscow" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleClick}>
+                <NavLink to="/vacancies/" style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleClick}>
                     <Group align="center" gap="xs">
                         <img src={HHIcon} alt="HH" data-testid="logo-hh"/>
                         <Text fw={600} data-testid="header-title">.FrontEnd</Text>
@@ -34,7 +45,7 @@ export const Header = () => {
                 </NavLink>
 
                 <Group gap={24}>
-                    <NavLink to="/vacancies/moscow" style={({ isActive }) => ({color: isActive ? theme.other.colors.black1 : theme.other.colors.gray, textDecoration: "none"})} onClick={handleClick}>
+                    <NavLink to="/vacancies/" style={({ isActive }) => ({color: isActive ? theme.other.colors.black1 : theme.other.colors.gray, textDecoration: "none"})} onClick={handleClick}>
                         {({ isActive }) => (
                             <Group align="center" gap={8}>
                                 <Text
@@ -46,17 +57,7 @@ export const Header = () => {
                                 >
                                     Вакансии FE
                                 </Text>
-                                {isActive && (
-                                    <Box
-                                        data-testid="vacancies-marker"
-                                        style={{
-                                            width: 6,
-                                            height: 6,
-                                            borderRadius: "50%",
-                                            backgroundColor: "#4263EB",
-                                        }}
-                                    />
-                                )}
+                                {isActive && <Marker />}
                             </Group>
                         )}
                     </NavLink>
@@ -68,17 +69,7 @@ export const Header = () => {
                                 <Text fw={500} data-testid="about-text">
                                     Обо мне
                                 </Text>
-                                {isActive && (
-                                    <Box
-                                        data-testid="vacancies-marker"
-                                        style={{
-                                            width: 6,
-                                            height: 6,
-                                            borderRadius: "50%",
-                                            backgroundColor: "#4263EB",
-                                        }}
-                                    />
-                                )}    
+                                {isActive && <Marker />}  
                             </Group>
                         )}
                     </NavLink>
