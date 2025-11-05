@@ -1,0 +1,18 @@
+@media (max-width: 1024px) {
+  .jobList {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .jobList {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jobList {
+    max-width: 280px;
+    margin: auto;
+  }
+}
