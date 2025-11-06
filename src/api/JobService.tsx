@@ -1,6 +1,7 @@
 import ky from "ky";
-import type { ApiResponse, typeJob } from "../types/typeJob";
+import type { ApiResponse } from "../types/typeJob";
 import { BASE_URL, API_INDUSTRY_IT, API_ROLE_FRONTEND, API_ITEMS_PER_PAGE } from "../constants/constantsApi";
+import { parseJobData } from "../utils/parseJobData";
 
 const JobService = {
     async searchByQuery(
@@ -22,25 +23,7 @@ const JobService = {
 
         const response: ApiResponse = await ky.get(url.toString(), { signal }).json<ApiResponse>();
 
-        const safeItems: typeJob[] = response.items.map((job: any) => ({
-            id: job.id ?? crypto.randomUUID(), 
-            url: job.alternate_url ?? "", 
-            name: job?.name ?? "Без названия",
-            employer: { name: job?.employer?.name ?? "Не указано" },
-            area: {
-                id: job?.area?.id ?? null,
-                name: job?.area?.name ?? "Не указано",
-            },
-            schedule: job?.schedule ? { name: job.schedule.name } : null,
-            salary: job?.salary
-                ? {
-                    from: job.salary.from ?? null,
-                    to: job.salary.to ?? null,
-                    currency: job.salary.currency ?? "RUR",
-                }
-                : null,
-            experience: { name: job?.experience?.name ?? "Не указан" },
-        }));
+        const safeItems = parseJobData(response.items);
 
         return {
             found: response.found,
