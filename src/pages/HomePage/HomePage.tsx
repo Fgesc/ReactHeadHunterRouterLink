@@ -53,6 +53,13 @@ export const HomePage = () => {
         await dispatch(fetchJobs({ query: trimmedQuery }));
     }, [dispatch, trimmedQuery]);
 
+    const handleKeyDownSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleSearch()
+        }
+    };
+
     return (
         <main style={{ paddingBottom: "84px" }}>
             <Group
@@ -78,6 +85,7 @@ export const HomePage = () => {
                             value={query}
                             placeholder={isSmallScreen ? "Поиск" : "Должность или название вакансии..."}
                             onChange={(e) => dispatch(setQuery(e.currentTarget.value))}
+                            onKeyDown={handleKeyDownSearch}
                             leftSection={<img src={SearchIcon} alt="поиск" width={16} height={16} />}
                             className={styles.search_input}
                             styles={{ input: { border: `1px solid ${theme.other.colors.preLight}` } }}
